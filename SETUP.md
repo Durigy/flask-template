@@ -59,11 +59,22 @@ mysql+pymysql://root@localhost/databasename
 
 ## To creating the database tables:
 ``` Note: Once the models.py file is updated you can use the following commands to add the tables to your local database for testing ```
+Reference: https://flask-migrate.readthedocs.io/en/latest/
 
+```
+> flask db init
+
+> flask db migrate -m "Initial migration."
+
+> flask db upgrade
+```
+
+This is not needed anymore below:
 ```
 > python
 
 >>> from main import db
 
 >>> db.create_all()
+
 ```
