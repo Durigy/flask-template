@@ -1,61 +1,71 @@
 {% extends "layout.html" %}
 {% block content %}
+
     <h1>Account Page</h1>
-
-    {% if current_user.is_authenticated %}
-        <h2>Hello {{ current_user.username }}</h2>
-    {% else %}
-        <h2>Hello There Friend</h2>
-    {% endif %}
+    <div class="d-flex flex-wrap p-2">
+        <div class="col pe-4">
+            <h2>Hello {{ current_user.username }}</h2>
+        </div>
+    </div>
     
-
+    <br>
+    <br>
     <div>
         <h3>Update account details</h3>
+
+        <strong>Email:</strong> {{ current_user.email }}
+
+        <br>
+        <br>
+        
         <form method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
-
-            <div>
-                {{ form.firstname.label() }}
-                
-                <br>
-                
-                {{ form.firstname() }}
-
-                {% if form.firstname.errors %}
+            <div class="row g-2">
+                <div class="col-md">
                     <div>
-                        {% for error in form.firstname.errors %}
-                        <span style="color: red;">{{ error }}</span>
-                        {% endfor %}
+                        {{ form.firstname.label( class="form-label" ) }}
+                        
+                        <br>
+                        
+                        {{ form.firstname( class="form-control" ) }}
+
+                        {% if form.firstname.errors %}
+                            <div>
+                                {% for error in form.firstname.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
+
+                <div class="col-md">
+                    <div>
+                        {{ form.lastname.label( class="form-label" ) }}
+
+                        <br>
+
+                        {{ form.lastname( class="form-control" ) }}
+
+                        {% if form.lastname.errors %}
+                            <div>
+                                {% for error in form.lastname.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
+
             <br>
 
-
             <div>
-                {{ form.lastname.label() }}
+                {{ form.username.label( class="form-label" ) }}
 
                 <br>
 
-                {{ form.lastname()}}
-
-                {% if form.lastname.errors %}
-                    <div>
-                        {% for error in form.lastname.errors %}
-                        <span style="color: red;">{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-
-            <br>
-
-            <div>
-                {{ form.username.label() }}
-
-                <br>
-
-                {{ form.username()}}
+                {{ form.username( class="form-control" ) }}
 
                 {% if form.username.errors %}
                     <div>
@@ -65,32 +75,22 @@
                     </div>
                 {% endif %}
             </div>
-
-            <br>
-
-            <div>
-                {{ form.email.label() }}
-
-                <br>
-
-                {{ form.email()}}
-
-                {% if form.email.errors %}
-                    <div>
-                        {% for error in form.email.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
             
-            <br>
+            <br>    
             
             <div>
                 {{ form.submit( class='btn' ) }}
             </div>
         </form>
     </div>
-</div>
+
+    <br><br>
+
+    <div>
+        <h3 class="pb-2">Want to change your password?</h3>
+        <a class="btn btn-secondary" href="{{ url_for('password_change')}}">Change Password</a>
+    </div>
+
+    <br><br><br>
 
 {% endblock %}
