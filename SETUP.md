@@ -47,6 +47,7 @@ mysql+pymysql://root@localhost/databasename
 - REMEMBER_COOKIE_DURATION: is the number of days for the user login session to expire after if they click remember me on login
 - DEBUG: should be set to **False** for production
 - HTTPS: should be set to **False** on develpment and **True** in production if an SSL is in use (FYI you should have an SSL, Let's Encrypt should work fine for most hobby/small business cases)
+- SQLALCHEMY_DATABASE_URI: if using PlanetScale for the database use 'mysql+mysqlconnector' instead of 'mysql+pymysql'
 
 #### To generate a secret_key, use the following commands:
 
